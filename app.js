@@ -49,6 +49,6 @@ for (const title in blogContent) {
 }
 
 
-app.listen(3000, function() {
+app.listen(process.env.PORT ||3000, function() {
   console.log("Blog Website running on port 3000")
 })

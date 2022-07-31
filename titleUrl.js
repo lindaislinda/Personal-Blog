@@ -7,6 +7,5 @@ exports.getTitleUrl = function(title){
       titleUrl += character
     }
   }
-  console.log(titleUrl)
   return titleUrl
 }

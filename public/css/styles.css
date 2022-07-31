@@ -1,0 +1,9 @@
+/* Montserrat and Playfair Display font */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Playfair+Display:ital,wght@1,600&display=swap');
+container {
+  min-height: 1000px;
+}
+.playfair {
+  font-family: 'Playfair Display', serif;
+  font-size: 30px;
+}

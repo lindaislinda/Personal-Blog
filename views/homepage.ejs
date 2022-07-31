@@ -1,0 +1,13 @@
+<%- include('header'); -%>
+
+    <div class="container py-3">
+      <%for (const title in blogContent) {%>
+        <div class="py-3">
+          <h2 class = playfair><%=`${title}`%></h2>
+          <p style = "display: inline"><%=`${blogContent[title].substring(0,100)}...`%></p>
+          <a style = "text-decoration: none" href="<%=`/${title}`%>">Read more</a>
+        </div>
+      <%}%>
+    </div>
+
+<%- include('footer'); -%>

@@ -1,6 +1,9 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
+const ejs = require("ejs");
+const _ = require("lodash")
+
 let blogContent = {"Day 1" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac lacinia neque. Sed ullamcorper pharetra porttitor. Praesent auctor arcu mauris, id pellentesque lorem suscipit ac. Sed posuere ipsum dui, sed commodo erat porttitor quis. Nulla ante neque, hendrerit ut feugiat a, elementum a mauris. In vulputate justo ut enim interdum, in ullamcorper quam facilisis. Mauris ut luctus nibh.",
 "Day 2" : "Suspendisse vel rutrum nisi. Nunc mattis, est eget consequat iaculis, neque sem aliquam metus, eget bibendum mauris nisi eget est. Morbi sodales a nulla et ultrices. In ultrices fringilla dignissim."}
 const blogUrl = require(__dirname + "/titleUrl.js")
@@ -33,7 +36,6 @@ app.post("/", function(req, res) {
   blogContent[title] = content;
   // Create a new page for the new blog created
   let titleUrl = blogUrl.getTitleUrl(title)
-
   app.get(titleUrl, function(req, res){
     res.render("blog", {title: "Blog", blogTitle:`${title}`, blog: `${blogContent[title]}`})
   })
@@ -49,6 +51,6 @@ for (const title in blogContent) {
 }
 
 
-app.listen(3000, function() {
+app.listen(process.env.PORT || 3000, function() {
   console.log("Blog Website running on port 3000")
 })

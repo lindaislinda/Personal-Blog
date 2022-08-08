@@ -1,16 +1,17 @@
 <%- include('header'); -%>
     <div class="container pt-5">
       <h2 class = "playfair">Home</h2>
-      <p>Duis gravida ac mi vel dignissim. Aliquam tincidunt a ligula et commodo. Pellentesque in tortor congue, lobortis orci ut, tempor nulla. Morbi sit amet accumsan ante. Nullam non nibh eu enim fringilla auctor. Aliquam at mattis ipsum. Pellentesque quis mi at odio vestibulum faucibus. Etiam posuere mattis tristique. Phasellus quis commodo metus, ac dictum tellus. Nunc arcu est, lacinia nec ex ac, vulputate tempus enim. Aenean facilisis consequat vulputate. Maecenas at tortor in felis accumsan sagittis nec sed dui. Donec malesuada euismod lectus ac venenatis. Nullam feugiat nulla eget consequat convallis.</p>
+      <p><%=homeContent%></p>
     </div>
     <div class="container py-3">
-      <%for (const title in blogContent) {%>
-        <div class="py-3">
-          <h2 class = playfair><%=`${title}`%></h2>
-          <p style = "display: inline"><%=`${blogContent[title].substring(0,100)}...`%></p>
-          <a style = "text-decoration: none" href="<%=`/${title}`%>">Read more</a>
+      <% blogContent.forEach(function(blog) { %>
+        <div class = "py-3">
+          <h2 class="playfair"><%=blog.name%></h2>
+          <p style = "display: inline"><%=`${blog.content.substring(0,100)}...`%></p>
+          <a style = "text-decoration: none" href="<%= `/${blog.name}`%>">Read more</a>
         </div>
-      <%}%>
+      <% }) %>
+
     </div>
 
 <%- include('footer'); -%>

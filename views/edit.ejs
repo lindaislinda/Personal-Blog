@@ -1,0 +1,16 @@
+<%- include('header'); -%>
+<div class="container py-5">
+  <form class="" action="/update" method="post">
+    <div class="mb-3">
+      <label for="title" class="form-label fw-bold">Title</label>
+      <input type="text" class="form-control" name = "title" value = "<%=blogTitle%>">
+    </div>
+    <div class="mb-3">
+      <label for="content" class="form-label fw-bold">Content</label>
+      <textarea style = "white-space: pre-wrap" class="form-control" rows="8" name = "content"><%=blogContent%></textarea>
+    </div>
+    <button type="submit" name="button" class="btn btn-dark" name = "editId" value = <%=blogId%>>Update</button>
+  </form>
+</div>
+
+<%- include('footer'); -%>

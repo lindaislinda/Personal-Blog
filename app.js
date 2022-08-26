@@ -11,7 +11,8 @@ let contactContent = "Aliquam porttitor est quis mi suscipit lacinia. Ut sagitti
 let homeContent = "Duis gravida ac mi vel dignissim. Aliquam tincidunt a ligula et commodo. Pellentesque in tortor congue, lobortis orci ut, tempor nulla. Morbi sit amet accumsan ante. Nullam non nibh eu enim fringilla auctor. Aliquam at mattis ipsum. Pellentesque quis mi at odio vestibulum faucibus. Etiam posuere mattis tristique. Phasellus quis commodo metus, ac dictum tellus. Nunc arcu est, lacinia nec ex ac, vulputate tempus enim. Aenean facilisis consequat vulputate. Maecenas at tortor in felis accumsan sagittis nec sed dui. Donec malesuada euismod lectus ac venenatis. Nullam feugiat nulla eget consequat convallis."
 
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static(__dirname + '/public'));
+app.use(express.static('public'));
+// app.use(express.static(path.join(__dirname, "public")))
 
 app.set('view engine', 'ejs');
 
@@ -23,41 +24,28 @@ const blogSchema = {
 }
 //Create a model
 const Blog = mongoose.model("Blog", blogSchema)
-//Add Initial Document
-const blog1 = new Blog({
-  name: "Day 1",
-  content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac lacinia neque. Sed ullamcorper pharetra porttitor. Praesent auctor arcu mauris, id pellentesque lorem suscipit ac. Sed posuere ipsum dui, sed commodo erat porttitor quis. Nulla ante neque, hendrerit ut feugiat a, elementum a mauris. In vulputate justo ut enim interdum, in ullamcorper quam facilisis. Mauris ut luctus nibh."
-})
-const blog2 = new Blog({
-  name: "Day 2",
-  content: "Suspendisse vel rutrum nisi. Nunc mattis, est eget consequat iaculis, neque sem aliquam metus, eget bibendum mauris nisi eget est. Morbi sodales a nulla et ultrices. In ultrices fringilla dignissim."
-})
-const defaultBlogContent = [blog1, blog2]
-
 
 app.get ("/", function (req, res) {
   Blog.find({}, function(err, foundBlogs) {
-    //Add the defaultBlogContent to foundBlogs if it is empty
-    if (foundBlogs.length === 0) {
-      Blog.insertMany(defaultBlogContent, function(err){
-        if (err) {
-          console.log(err)
-        } else {
-          console.log("Successfully saved default items to the database")
-        }
-      })
-      res.redirect("/")
-    } else {
-      res.render("homepage", {title: "Linda's Blog", homeContent: homeContent, blogContent: foundBlogs})
-      foundBlogs.forEach(function(blog) {
-        let titleUrl = blogUrl.getTitleUrl(blog.name)
-        app.get(titleUrl, function(req,res) {
-          res.render("blog", {title: "Blog", blogTitle: blog.name, blog: blog.content})
-        })
-      })
-    }
+      res.render("homepage", {title: "Linda's Blog", homeContent: homeContent, blogContent: foundBlogs})    
   })
 })
+
+app.get("/posts/:postId", function(req, res){
+
+  const requestedPostId = req.params.postId;
+  
+    Blog.findOne({_id: requestedPostId}, function(err, post){
+      res.render("blog", {
+        title: "Blog", 
+        blogTitle: post.name, 
+        blog: post.content,
+        blogId: post._id
+      });
+    });
+  
+  });
+
 
 app.get("/about", function(req, res) {
   res.render("about", {title: "About", aboutContent: aboutContent})
@@ -83,6 +71,26 @@ app.post("/", function(req, res) {
   res.redirect("/")
 })
 
+app.post("/delete", function(req,res) {
+  let deleteId = req.body.deleteId;
+  Blog.findByIdAndRemove(deleteId, function(){});
+  res.redirect("/");
+})
+
+app.post("/edit", function(req, res) {
+  let editId = req.body.editId;
+  Blog.findOne({_id: editId}, function(err, foundBlog) {
+    res.render("edit", {title: "Edit", blogTitle: foundBlog.name, blogContent: foundBlog.content, blogId : foundBlog._id})
+  })
+})
+
+app.post("/update", function(req, res) {
+  let updatedId = req.body.button;
+  let updatedContent = req.body.content;
+  let updatedTitle = req.body.title;
+  Blog.findByIdAndUpdate(updatedId, {name: updatedTitle, content: updatedContent}, function() {})
+  res.redirect("/")
+})
 
 let port = process.env.PORT;
 if (port == null || port == "") {

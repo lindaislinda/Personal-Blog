@@ -1,7 +1,17 @@
 <%- include('header'); -%>
-<div class="container pt-5">
-  <h2 class="playfair"><%= blogTitle%></h2>
-  <pre class = "blog-content"><%=blog%></pre>
+  <div class="container pt-5">
+    <h2 class="playfair">
+      <%= blogTitle%>
+    </h2>
+    <pre class="blog-content"><%=blog%></pre>
+  </div>
+  <div class = "container buttons pb-5">
+    <form action="/edit" method = "post">
+      <button class="btn btn-dark" type="submit" name = "editId" value = "<%=blogId%>">Edit</button>
+    </form>
+    <form action="/delete" method = "post">
+      <button class="btn btn-danger" type="submit" name = "deleteId" value = "<%=blogId%>">Delete</button>
+    </form>
+  </div>
 
-</div>
-<%- include('footer'); -%>
+  <%- include('footer'); -%>

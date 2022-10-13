@@ -15,3 +15,20 @@
     </div>
 
 <%- include('footer'); -%>
+<%- include('header'); -%>
+    <div class="container pt-5">
+      <h2 class = "playfair">Home</h2>
+      <p><%=homeContent%></p>
+    </div>
+    <div class="container py-3">
+      <% blogContent.forEach(function(blog) { %>
+        <div class = "py-3">
+          <h2 class="playfair"><%=blog.name%></h2>
+          <p style = "display: inline"><%=`${blog.content.substring(0,100)}...`%></p>
+          <a style = "text-decoration: none" href="<%= `/${blog.name}`%>">Read more</a>
+        </div>
+      <% }) %>
+
+    </div>
+
+<%- include('footer'); -%>

@@ -7,23 +7,3 @@ container {
   font-family: 'Playfair Display', serif;
   font-size: 30px;
 }
-.blog-content {
-  font-family: var(--bs-font-sans-serif);
-  white-space:pre-wrap;
-  font-size: 1rem;
-}
-.buttons {
-  display: flex;
-  justify-content: space-between;
-}
-
-.btn {
-  border-radius: 7px;
-  border: none;
-}
-.btn-danger:hover {
-  background-color: #FFC107
-}
-.btn-dark:hover {
-  background-color: grey;
-}

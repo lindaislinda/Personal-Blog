@@ -1,0 +1,84 @@
+/* Montserrat and Playfair Display and Poppins font */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700;1,800&family=Poppins&display=swap');container {
+  min-height: 1000px;
+}
+.playfair {
+  font-family: 'Playfair Display', serif;
+}
+
+.bold {
+  font-weight: bold;
+}
+.blog-content {
+  font-family: var(--bs-font-sans-serif);
+  white-space:pre-wrap;
+  font-size: 1rem;
+}
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn {
+  border-radius: 7px;
+  border: none;
+}
+.btn-danger:hover {
+  background-color: #FFC107
+}
+.btn-dark:hover {
+  background-color: grey;
+}
+
+.container-home {
+  min-height: 100vh;
+}
+
+/* Header Page */
+.blog-image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+
+.about {
+  margin-left: 4rem;
+}
+
+.row-header {
+  padding-top: 4rem;
+}
+
+.blog-post {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3/2;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+/*Blog posts*/
+
+.parallax {
+  background-image: url("https://i.pinimg.com/564x/f6/f6/6c/f6f66c0c343454a0c8773f164f80d2ef.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  height: 10rem; /* set the height to the full viewport height */
+}
+
+.blog-title {
+  padding-top: 6.5rem;
+  color: white;
+}
+/* Styles for small screens */
+@media (max-width: 767px) {
+  .about {
+    margin: 0;
+  }
+  .row-header {
+    padding-top: 1rem;
+  }
+}

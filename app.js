@@ -7,12 +7,17 @@ const _ = require("lodash");
 const blogUrl = require(__dirname + "/titleUrl.js")
 
 let homeContent = "This Blog Website is hosted by Heroku.\nFront-end technology: EJS, CSS, Bootstrap 5\nBack-end technology: Node.js, Express.js, MongoDB (database)\nThe code can be found at: https://github.com/lindaislinda/Personal-Blog"
+let howtoContent = 'You are welcome to contribute to my blog!\nTo create a new post:\n- Click "Compose" on the navbar\n- Add the Title and the Content of your post\nTo edit/delete a post:\n- Click "read more" on the post\n- Click the Edit/Delete button'
 let contactContent = "Phone number: +13862792014\nEmail: nguyen133@usf.edu\nGithub: github.com/lindaislinda\nLinkedIn: linkedin.com/in/linda--nguyen/"
 let aboutContent = "This website is created by Linda Nguyen - a sophomore majoring in Computer Science at the University of South Florida."
+
+
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('public'));
 // app.use(express.static(path.join(__dirname, "public")))
+
+// app.use(express.favicon('/public/favicon/favicon.ico'));
 
 app.set('view engine', 'ejs');
 
@@ -27,7 +32,7 @@ const Blog = mongoose.model("Blog", blogSchema)
 
 app.get ("/", function (req, res) {
   Blog.find({}, function(err, foundBlogs) {
-      res.render("homepage", {title: "Linda's Blog", homeContent: homeContent, blogContent: foundBlogs})    
+      res.render("homepage", {title: "Linda's Blog", homeContent: homeContent, blogContent: foundBlogs, howtoContent: howtoContent})    
   })
 })
 
@@ -93,6 +98,7 @@ app.post("/update", function(req, res) {
 })
 
 let port = process.env.PORT;
+
 if (port == null || port == "") {
   port = 3000;
 }

@@ -1,33 +1,44 @@
 <%- include('header'); -%>
-    <div class="container pt-5">
-      <h2 class = "playfair">Home</h2>
-      <pre class="blog-content"><%=homeContent%></pre>
+    <div class="container container-home">
+      <div class="row row-header">
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <img src="https://i.pinimg.com/564x/76/3c/08/763c081e856f96adb91f24fff893a7ab.jpg" alt="" class = "blog-image">
+          <!-- https://i.pinimg.com/564x/de/97/8a/de978a9bff33c90837ce83be98a78db8.jpg -->
+        </div>
+
+        <div class="col about">
+          <h2 class = "playfair bold">About Linda's Personal Blog Website</h2>
+          <pre class="blog-content">Hello, I'm Linda (also known as Nguyen), a Computer Science major at the University of South Florida. Welcome to my personal blog website, where I document my knowledge and share my experiences with the world! This platform is not only a place for me to express myself and personalize my experience, but it also serves as a means for me to develop my full stack development skills.</pre>
+          <pre class="blog-content"><%=homeContent%></pre>
+          <h4 class="playfair bold">How you can use this blog</h2>
+          <pre class="blog-content"><%=howtoContent%></pre>
+        </div>
+      </div>
+      
     </div>
-    <div class="container py-3">
+    <div class="container">
+      <h2 class="text-center my-4 playfair">--- Blogs ---</h1>
+      <div class="row">
+      
       <% blogContent.forEach(function(blog) { %>
-        <div class = "py-3">
+        <% let imageNum = Math.floor(Math.random() * 13) + 1; %>
+        <% let imageSource = "/images/image"+imageNum+".jpg"%>
+        <!-- <div class = "py-3">
           <h2 class="playfair"><%=blog.name%></h2>
           <p style = "display: inline"><%=`${blog.content.substring(0,100)}...`%></p>
           <a style = "text-decoration: none" href="/posts/<%=blog._id%>">Read more</a>
+        </div> -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card mb-3" >
+              <a href="/posts/<%=blog._id%>"><img src= "<%= imageSource %>" class="card-img-top blog-post" alt="article-img"></a>
+              <div class="card-body">
+                  <h5 class="card-title"><%=blog.name%></h5>
+                  <p class="card-text"><%=`${blog.content.substring(0,100)}...`%></p>
+              </div>
+          </div>
         </div>
       <% }) %>
-
     </div>
-
-<%- include('footer'); -%>
-<%- include('header'); -%>
-    <div class="container pt-5">
-      <h2 class = "playfair">Home</h2>
-      <p><%=homeContent%></p>
-    </div>
-    <div class="container py-3">
-      <% blogContent.forEach(function(blog) { %>
-        <div class = "py-3">
-          <h2 class="playfair"><%=blog.name%></h2>
-          <p style = "display: inline"><%=`${blog.content.substring(0,100)}...`%></p>
-          <a style = "text-decoration: none" href="<%= `/${blog.name}`%>">Read more</a>
-        </div>
-      <% }) %>
 
     </div>
 

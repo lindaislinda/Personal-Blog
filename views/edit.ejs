@@ -7,9 +7,20 @@
     </div>
     <div class="mb-3">
       <label for="content" class="form-label fw-bold">Content</label>
-      <textarea style = "white-space: pre-wrap" class="form-control" rows="8" name = "content"><%=blogContent%></textarea>
+      <textarea name = "content" id="mytextarea"><%=blogContent%></textarea>
+      <script >
+       tinymce.init({
+         selector: 'textarea',
+         plugins: '',
+         toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough',
+       });
+
+      function getContent() { 
+        var content = tinymce.get('mytextarea').getContent();
+      }
+      </script>
     </div>
-    <button type="submit" name="button" class="btn btn-dark" name = "editId" value = <%=blogId%>>Update</button>
+    <button type="submit" name="button" class="btn btn-dark" value = <%=blogId%>>Update</button>
   </form>
 </div>
 

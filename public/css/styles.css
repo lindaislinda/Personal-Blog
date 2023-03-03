@@ -1,9 +1,98 @@
-/* Montserrat and Playfair Display font */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Playfair+Display:ital,wght@1,600&display=swap');
+/* Montserrat and Playfair Display and Poppins font */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700;1,800&family=Poppins&display=swap');
 container {
   min-height: 1000px;
 }
 .playfair {
   font-family: 'Playfair Display', serif;
-  font-size: 30px;
 }
+
+.bold {
+  font-weight: bold;
+}
+.blog-content {
+  font-family: var(--bs-font-sans-serif);
+  white-space:pre-wrap;
+  font-size: 1rem;
+}
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn {
+  border-radius: 7px;
+  border: none;
+}
+.btn-danger:hover {
+  background-color: #FFC107
+}
+.btn-dark:hover {
+  background-color: grey;
+}
+
+.container-home {
+  min-height: 100vh;
+}
+
+/* Header Page */
+.blog-image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+
+.about {
+  margin-left: 4rem;
+}
+
+.row-header {
+  padding-top: 2rem;
+}
+
+.blog-post {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3/2;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+/*Blog posts*/
+
+.parallax {
+  background-image: url("https://images.unsplash.com/photo-1628965882741-570e75becd5d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8YnJvd24lMjBhZXN0aGV0aWN8ZW58MHx8MHx8&w=1000&q=80");
+  background-size: cover;
+  background-attachment: fixed;
+  height: 10rem; /* set the height to the full viewport height */
+}
+
+
+.blog-title {
+  position: absolute;
+  top: 3rem;
+  color: white;
+}
+
+.blog-container {
+  padding-left: 20%;
+  padding-right: 20%;
+  position: relative;
+}
+/* Styles for small screens */
+@media (max-width: 767px) {
+  .about {
+    margin: 0;
+  }
+  .row-header {
+    padding-top: 1rem;
+  }
+  .blog-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+

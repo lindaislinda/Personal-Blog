@@ -1,17 +1,18 @@
 <%- include('header'); -%>
     <div class="container container-home">
       <div class="row row-header">
-        <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="col-lg-6 col-md-12 col-sm-12">
           <img src="https://i.pinimg.com/564x/76/3c/08/763c081e856f96adb91f24fff893a7ab.jpg" alt="" class = "blog-image">
-          <!-- https://i.pinimg.com/564x/de/97/8a/de978a9bff33c90837ce83be98a78db8.jpg -->
+        
         </div>
 
         <div class="col about">
           <h2 class = "playfair bold">About Linda's Personal Blog Website</h2>
           <pre class="blog-content">Hello, I'm Linda (also known as Nguyen), a Computer Science major at the University of South Florida. Welcome to my personal blog website, where I document my knowledge and share my experiences with the world! This platform is not only a place for me to express myself and personalize my experience, but it also serves as a means for me to develop my full stack development skills.</pre>
           <pre class="blog-content"><%=homeContent%></pre>
-          <h4 class="playfair bold">How you can use this blog</h2>
+          <h4 class="playfair bold">You are welcome to contribute to this blog!</h2>
           <pre class="blog-content"><%=howtoContent%></pre>
+          <pre class = "blog-content">I am thrilled to have the opportunity to engage with you through this platform. However, I kindly ask that you refrain from posting inappropriate or spammy content that could negatively impact the integrity and quality of this blog. This project was created with dedication and hard work, and I want to ensure that it remains a valuable resource for all of us. Let's work together to maintain a respectful and productive space for discussion and learning.</pre>
         </div>
       </div>
       
@@ -19,24 +20,23 @@
     <div class="container">
       <h2 class="text-center my-4 playfair">--- Blogs ---</h1>
       <div class="row">
-      
+      <% let i = 1 %>
       <% blogContent.forEach(function(blog) { %>
-        <% let imageNum = Math.floor(Math.random() * 13) + 1; %>
-        <% let imageSource = "/images/image"+imageNum+".jpg"%>
-        <!-- <div class = "py-3">
-          <h2 class="playfair"><%=blog.name%></h2>
-          <p style = "display: inline"><%=`${blog.content.substring(0,100)}...`%></p>
-          <a style = "text-decoration: none" href="/posts/<%=blog._id%>">Read more</a>
-        </div> -->
+        
+        <% let imageSource = "/images/image"+i+".jpg"%>
+        
         <div class="col-md-6 col-lg-4">
           <div class="card mb-3" >
               <a href="/posts/<%=blog._id%>"><img src= "<%= imageSource %>" class="card-img-top blog-post" alt="article-img"></a>
               <div class="card-body">
                   <h5 class="card-title"><%=blog.name%></h5>
-                  <p class="card-text"><%=`${blog.content.substring(0,100)}...`%></p>
+                  <%blog.content%>
+                  <p class="card-text"><%blog.content%></p>
               </div>
           </div>
         </div>
+        <%if (i==11) {i = 0}; %>
+        <%i = i+1;%>
       <% }) %>
     </div>
 

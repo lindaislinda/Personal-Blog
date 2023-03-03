@@ -1,13 +1,30 @@
 <%- include('header'); -%>
 <div class="container py-5">
-  <form class="" action="/" method="post">
+
+
+  <form class="" action="/" method="post" onsubmit="getContent()"`>
     <div class="mb-3">
       <label for="title" class="form-label fw-bold">Title</label>
       <input type="text" class="form-control" name = "title" placeholder="Title">
     </div>
     <div class="mb-3">
       <label for="content" class="form-label fw-bold">Content</label>
-      <textarea style = "white-space: pre-wrap" class="form-control" rows="8" name = "content"></textarea>
+      <!-- <textarea style = "white-space: pre-wrap" class="form-control" rows="8" name = "content"></textarea> -->
+      <textarea id="mytextarea" name = "content" placeholder="Write your masterpiece here!">
+        
+      </textarea>
+      <script >
+       tinymce.init({
+        selector: 'textarea',
+         plugins: 'wordcount autolink',
+         toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | wordcount',
+       });
+
+      function getContent() { 
+        var content = tinymce.get('mytextarea').getContent();
+        
+      }
+      </script>
     </div>
     <button type="submit" name="button" class="btn btn-dark">Submit</button>
   </form>

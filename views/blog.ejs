@@ -1,20 +1,20 @@
 <%- include('header'); -%>
   <div class="parallax">
-    <div class = "container">
+    <div class = "container blog-container">
       <h1 class="blog-title playfair"><%= blogTitle%></h1>
     </div>
   </div>
-  <div class="container pt-2">
-
-    <pre class="blog-content"><%=blog%></pre>
+  <div class="container blog-container pt-2">
+    <%- blog %>
+    
   </div>
-  <div class = "container buttons pb-5">
-    <form action="/edit" method = "post">
+  <div class = "container blog-container buttons pb-5 pt-5">
+    <!-- <form action="/edit" method = "post">
       <button class="btn btn-dark" type="submit" name = "editId" value = "<%=blogId%>">Edit</button>
     </form>
     <form action="/delete" method = "post">
       <button class="btn btn-danger" type="submit" name = "deleteId" value = "<%=blogId%>">Delete</button>
-    </form>
+    </form> -->
   </div>
 
   <%- include('footer'); -%>
